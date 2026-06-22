@@ -1,0 +1,27 @@
+#*******************************************************************************
+#
+# Snakefile
+# Pat Schloss
+# Schloss Lab
+# University of Michigan
+#
+# Purpose:  Snakemake file for rendering MRA manuscripts
+#
+#*******************************************************************************
+
+rule targets:
+  input:
+    "submission/manuscript.pdf"
+
+rule make_paper:
+  input:
+    "submission/manuscript.qmd",
+    "submission/references.bib",
+    "submission/asm.csl"
+  output:
+    expand("submission/manuscript.{format}",
+          format = ["pdf", "md", "tex", "docx"])
+  shell:
+    """
+    ~/miniforge3/envs/mums2_pub/bin/quarto render submission/manuscript.qmd
+    """

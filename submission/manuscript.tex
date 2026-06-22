@@ -1,0 +1,292 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{setspace}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage[left]{lineno}
+\linenumbers
+\modulolinenumbers
+\usepackage{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+\begin{document}
+
+
+\setstretch{1.75}
+\raggedright
+
+\section{strollur: An R package for working with amplicon sequence data
+in
+R}\label{strollur-an-r-package-for-working-with-amplicon-sequence-data-in-r}
+
+\vspace{20mm}
+
+\textbf{Running title:} mums2
+
+\vspace{20mm}
+
+Sarah L. Westcott\textsuperscript{1}, Gregory Johnson
+Jr.\textsuperscript{1}, Patrick D. Schloss\textsuperscript{1\textdagger}
+
+\vspace{25mm}
+
+\textdagger To whom correspondence should be addressed\\
+\href{mailto:pschloss@umich.edu}{pschloss@umich.edu}
+
+\vspace{10mm}
+
+1 Department of Microbiology \& Immunology, University of Michigan, Ann
+Arbor, MI 48109
+
+\vspace{20mm}
+
+\textbf{Software Announcement}
+
+\newpage
+
+\subsection{Abstract}\label{abstract}
+
+Microbiologists are increasingly relying on R to analyze and visualize
+amplicon sequence data from microbiome studies. We present strollur,
+which isan open source package that facilitates the import, export, and
+handling of amplicon sequence data within the R programming language.
+
+\newpage
+
+\subsection{Announcement}\label{announcement}
+
+Amplicon sequencing projects including 16S rRNA gene sequence
+collections are widely used by microbiologists to analyze diverse
+microbiomes. These datasets are often large and complicated making it
+difficult for researchers to keep their data organized and record the
+provenance of derivative data products. A long-standing difficulty for
+many has been the ability to move data between different analytical
+tools. This often requires reformatting data, which is challenging for
+researchers with limited programming skills. Several efforts have been
+made to facilitate the management of amplicon sequencing data and their
+associated metadata including the biom file format
+{[}\textbf{\emph{ref}}{]}, mothur output files
+{[}\textbf{\emph{ref}}{]}, the qiime2 archive {[}\textbf{\emph{ref}}{]},
+and phyloseq R objects {[}\textbf{\emph{ref}}{]}. Each of these formats
+and tools have strengths but also limitations that make their use
+difficult for researchers new to microbiome data analysis or who are
+more accustomed to using R's tidyverse collection of packages.
+
+To overcome these challenges, we developed the strollur R package. Our
+goal was to develop a framework to store amplicon sequence data that
+could be integrated within other packages without the end user
+necessarily knowing they were using strollur. This is meant to be
+analogous to how many users of the tidyverse use the tibble package
+without knowing they are using the package. By analogy, strollur strives
+to provide a consistent interface to amplicon sequence data that also
+integrates with analysis and visualization tools from the tidyverse and
+other tools used by microbiome researchers.
+
+strollur's data structures allows users to keep track of aligned and
+unaligned sequence data, sequencing quality data, abundance data,
+classification data, phylogenetic trees, operational taxonomic unit
+(OTU) and amplicon sequence variant (ASV) assignments, and metadata.
+Furthermore, the data structures can accommodate information describing
+the commands that generated the data products and information about the
+databases that were used. The package includes user-facing functions for
+getting, assigning, and summarizing various forms of data. The package
+also provides functions to read data from or write data to mothur
+{[}\textbf{\emph{ref}}{]}, qiime2 {[}\textbf{\emph{ref}}{]}, dada2
+{[}\textbf{\emph{ref}}{]}, phyloseq {[}\textbf{\emph{ref}}{]}, and biom
+formats {[}\textbf{\emph{ref}}{]}. strollur can be used on any operating
+system with no additional dependencies.
+
+strollur also includes functions designed for developers to integrate
+strollur objects into their own R packages. These developer-facing
+functions provide additional access to the back end data. The ability to
+import and export data as a strollur object has already been integrated
+into the clustur, phylotypr, and rchime packages. The package leverages
+the R6 object oriented programming framework and the Rcpp package to
+accelerate data processing. By using these features of R, strollur
+minimize the need to create deep copies of large data objects.
+
+\textbf{Data availability.} strollur can accessed through the
+Comprehensive R Archive Network (CRAN; DOI:
+10.32614/CRAN.package.strollur) and developmental versions are available
+through the project's GitHub website
+(https://github.com/mothur2/strollur). The package's GitHub repository
+includes the package's source code, the website's source code, automated
+tests written using the testthat R package, and an issue tracker where
+users can post questions, bug reports, and suggestions for future
+features. A pkgdown version of the documentation including multiple
+articles describing its use is hosted at (https://mothur.org/strollur).
+The strollur package is available under the MIT License.
+
+\subsection{Acknowledgements}\label{acknowledgements}
+
+This project was supported, in part, by \ldots{}
+
+\newpage
+
+\subsection{References}\label{references}
+
+\phantomsection\label{refs}
+
+
+
+
+\end{document}

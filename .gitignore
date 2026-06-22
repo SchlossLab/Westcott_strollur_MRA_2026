@@ -1,0 +1,11 @@
+# Snakemake
+.snakemake
+.DS_Store
+
+# vscode
+.vscode/
+
+#project directories
+!README.md
+data/
+scratch/

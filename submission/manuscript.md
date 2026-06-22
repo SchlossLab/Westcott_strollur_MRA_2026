@@ -1,0 +1,106 @@
+
+
+\usepackage[left]{lineno}
+
+\linenumbers
+
+\modulolinenumbers
+
+\usepackage{helvet}
+
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[T1]{fontenc}
+
+# strollur: An R package for working with amplicon sequence data in R
+
+**Running title:** mums2
+
+Sarah L. Westcott<sup>1</sup>, Gregory Johnson Jr.<sup>1</sup>, Patrick
+D. Schloss<sup>1</sup>
+
+To whom correspondence should be addressed  
+
+1 Department of Microbiology & Immunology, University of Michigan, Ann
+Arbor, MI 48109
+
+**Software Announcement**
+
+## Abstract
+
+Microbiologists are increasingly relying on R to analyze and visualize
+amplicon sequence data from microbiome studies. We present strollur,
+which isan open source package that facilitates the import, export, and
+handling of amplicon sequence data within the R programming language.
+
+## Announcement
+
+Amplicon sequencing projects including 16S rRNA gene sequence
+collections are widely used by microbiologists to analyze diverse
+microbiomes. These datasets are often large and complicated making it
+difficult for researchers to keep their data organized and record the
+provenance of derivative data products. A long-standing difficulty for
+many has been the ability to move data between different analytical
+tools. This often requires reformatting data, which is challenging for
+researchers with limited programming skills. Several efforts have been
+made to facilitate the management of amplicon sequencing data and their
+associated metadata including the biom file format \[***ref***\], mothur
+output files \[***ref***\], the qiime2 archive \[***ref***\], and
+phyloseq R objects \[***ref***\]. Each of these formats and tools have
+strengths but also limitations that make their use difficult for
+researchers new to microbiome data analysis or who are more accustomed
+to using R’s tidyverse collection of packages.
+
+To overcome these challenges, we developed the strollur R package. Our
+goal was to develop a framework to store amplicon sequence data that
+could be integrated within other packages without the end user
+necessarily knowing they were using strollur. This is meant to be
+analogous to how many users of the tidyverse use the tibble package
+without knowing they are using the package. By analogy, strollur strives
+to provide a consistent interface to amplicon sequence data that also
+integrates with analysis and visualization tools from the tidyverse and
+other tools used by microbiome researchers.
+
+strollur’s data structures allows users to keep track of aligned and
+unaligned sequence data, sequencing quality data, abundance data,
+classification data, phylogenetic trees, operational taxonomic unit
+(OTU) and amplicon sequence variant (ASV) assignments, and metadata.
+Furthermore, the data structures can accommodate information describing
+the commands that generated the data products and information about the
+databases that were used. The package includes user-facing functions for
+getting, assigning, and summarizing various forms of data. The package
+also provides functions to read data from or write data to mothur
+\[***ref***\], qiime2 \[***ref***\], dada2 \[***ref***\], phyloseq
+\[***ref***\], and biom formats \[***ref***\]. strollur can be used on
+any operating system with no additional dependencies.
+
+strollur also includes functions designed for developers to integrate
+strollur objects into their own R packages. These developer-facing
+functions provide additional access to the back end data. The ability to
+import and export data as a strollur object has already been integrated
+into the clustur, phylotypr, and rchime packages. The package leverages
+the R6 object oriented programming framework and the Rcpp package to
+accelerate data processing. By using these features of R, strollur
+minimize the need to create deep copies of large data objects.
+
+**Data availability.** strollur can accessed through the Comprehensive R
+Archive Network (CRAN; DOI: 10.32614/CRAN.package.strollur) and
+developmental versions are available through the project’s GitHub
+website (https://github.com/mothur2/strollur). The package’s GitHub
+repository includes the package’s source code, the website’s source
+code, automated tests written using the testthat R package, and an issue
+tracker where users can post questions, bug reports, and suggestions for
+future features. A pkgdown version of the documentation including
+multiple articles describing its use is hosted at
+(https://mothur.org/strollur). The strollur package is available under
+the MIT License.
+
+## Acknowledgements
+
+This project was supported, in part, by …
+
+## References
+
+<div id="refs">
+
+</div>
