@@ -94,6 +94,39 @@
 \makeatother
 
 
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 
 
@@ -223,13 +256,11 @@ many has been the ability to move data between different analytical
 tools. This often requires reformatting data, which is challenging for
 researchers with limited programming skills. Several efforts have been
 made to facilitate the management of amplicon sequencing data and their
-associated metadata including the biom file format
-{[}\textbf{\emph{ref}}{]}, mothur output files
-{[}\textbf{\emph{ref}}{]}, the qiime2 archive {[}\textbf{\emph{ref}}{]},
-and phyloseq R objects {[}\textbf{\emph{ref}}{]}. Each of these formats
-and tools have strengths but also limitations that make their use
-difficult for researchers new to microbiome data analysis or who are
-more accustomed to using R's tidyverse collection of packages.
+associated metadata including the biom file format (1), mothur output
+files (2), the qiime2 archive (3), and phyloseq R objects (4). Each of
+these formats and tools have strengths but also limitations that make
+their use difficult for researchers new to microbiome data analysis or
+who are more accustomed to using R's tidyverse collection of packages.
 
 To overcome these challenges, we developed the strollur R package. Our
 goal was to develop a framework to store amplicon sequence data that
@@ -241,25 +272,24 @@ to provide a consistent interface to amplicon sequence data that also
 integrates with analysis and visualization tools from the tidyverse and
 other tools used by microbiome researchers.
 
-strollur's data structures allows users to keep track of aligned and
-unaligned sequence data, sequencing quality data, abundance data,
-classification data, phylogenetic trees, operational taxonomic unit
-(OTU) and amplicon sequence variant (ASV) assignments, and metadata.
+strollur's data structures allows users to keep track of sequence data,
+abundance data, classification data, phylogenetic trees, operational
+taxonomic unit (OTU) and amplicon sequence variant (ASV) assignments,
+reports from different processing steps, and sample metadata.
 Furthermore, the data structures can accommodate information describing
 the commands that generated the data products and information about the
 databases that were used. The package includes user-facing functions for
 getting, assigning, and summarizing various forms of data. The package
-also provides functions to read data from or write data to mothur
-{[}\textbf{\emph{ref}}{]}, qiime2 {[}\textbf{\emph{ref}}{]}, dada2
-{[}\textbf{\emph{ref}}{]}, phyloseq {[}\textbf{\emph{ref}}{]}, and biom
-formats {[}\textbf{\emph{ref}}{]}. strollur can be used on any operating
-system with no additional dependencies.
+also provides functions to read data from or write data to other popular
+formats including mothur (2), qiime2 (3), dada2 (5), phyloseq (4), and
+biom (1). strollur can be used on any operating system with no
+additional dependencies.
 
 strollur also includes functions designed for developers to integrate
 strollur objects into their own R packages. These developer-facing
 functions provide additional access to the back end data. The ability to
 import and export data as a strollur object has already been integrated
-into the clustur, phylotypr, and rchime packages. The package leverages
+into the clustur (6) and phylotypr (7) packages. The package leverages
 the R6 object oriented programming framework and the Rcpp package to
 accelerate data processing. By using these features of R, strollur
 minimize the need to create deep copies of large data objects.
@@ -274,17 +304,111 @@ tests written using the testthat R package, and an issue tracker where
 users can post questions, bug reports, and suggestions for future
 features. A pkgdown version of the documentation including multiple
 articles describing its use is hosted at (https://mothur.org/strollur).
-The strollur package is available under the MIT License.
-
-\subsection{Acknowledgements}\label{acknowledgements}
-
-This project was supported, in part, by \ldots{}
+The strollur package is available under the GNU General Public License
+(v3).
 
 \newpage
 
 \subsection{References}\label{references}
 
 \phantomsection\label{refs}
+\begin{CSLReferences}{0}{1}
+\bibitem[\citeproctext]{ref-McDonald2012}
+\CSLLeftMargin{1. }%
+\CSLRightInline{\textbf{McDonald D}, \textbf{Clemente JC},
+\textbf{Kuczynski J}, \textbf{Rideout JR}, \textbf{Stombaugh J},
+\textbf{Wendel D}, \textbf{Wilke A}, \textbf{Huse S}, \textbf{Hufnagle
+J}, \textbf{Meyer F}, \textbf{Knight R}, \textbf{Caporaso JG}. 2012. The
+biological observation matrix (BIOM) format or: How i learned to stop
+worrying and love the ome-ome. GigaScience \textbf{1}.
+doi:\href{https://doi.org/10.1186/2047-217x-1-7}{10.1186/2047-217x-1-7}.}
+
+\bibitem[\citeproctext]{ref-Schloss2009}
+\CSLLeftMargin{2. }%
+\CSLRightInline{\textbf{Schloss PD}, \textbf{Westcott SL},
+\textbf{Ryabin T}, \textbf{Hall JR}, \textbf{Hartmann M},
+\textbf{Hollister EB}, \textbf{Lesniewski RA}, \textbf{Oakley BB},
+\textbf{Parks DH}, \textbf{Robinson CJ}, \textbf{Sahl JW}, \textbf{Stres
+B}, \textbf{Thallinger GG}, \textbf{Van Horn DJ}, \textbf{Weber CF}.
+2009. Introducing mothur: Open-source, platform-independent,
+community-supported software for describing and comparing microbial
+communities. Applied and Environmental Microbiology
+\textbf{75}:7537--7541.
+doi:\href{https://doi.org/10.1128/aem.01541-09}{10.1128/aem.01541-09}.}
+
+\bibitem[\citeproctext]{ref-Bolyen2019}
+\CSLLeftMargin{3. }%
+\CSLRightInline{\textbf{Bolyen E}, \textbf{Rideout JR}, \textbf{Dillon
+MR}, \textbf{Bokulich NA}, \textbf{Abnet CC}, \textbf{Al-Ghalith GA},
+\textbf{Alexander H}, \textbf{Alm EJ}, \textbf{Arumugam M},
+\textbf{Asnicar F}, \textbf{Bai Y}, \textbf{Bisanz JE},
+\textbf{Bittinger K}, \textbf{Brejnrod A}, \textbf{Brislawn CJ},
+\textbf{Brown CT}, \textbf{Callahan BJ}, \textbf{Caraballo-Rodríguez
+AM}, \textbf{Chase J}, \textbf{Cope EK}, \textbf{Da Silva R},
+\textbf{Diener C}, \textbf{Dorrestein PC}, \textbf{Douglas GM},
+\textbf{Durall DM}, \textbf{Duvallet C}, \textbf{Edwardson CF},
+\textbf{Ernst M}, \textbf{Estaki M}, \textbf{Fouquier J},
+\textbf{Gauglitz JM}, \textbf{Gibbons SM}, \textbf{Gibson DL},
+\textbf{Gonzalez A}, \textbf{Gorlick K}, \textbf{Guo J},
+\textbf{Hillmann B}, \textbf{Holmes S}, \textbf{Holste H},
+\textbf{Huttenhower C}, \textbf{Huttley GA}, \textbf{Janssen S},
+\textbf{Jarmusch AK}, \textbf{Jiang L}, \textbf{Kaehler BD},
+\textbf{Kang KB}, \textbf{Keefe CR}, \textbf{Keim P}, \textbf{Kelley
+ST}, \textbf{Knights D}, \textbf{Koester I}, \textbf{Kosciolek T},
+\textbf{Kreps J}, \textbf{Langille MGI}, \textbf{Lee J}, \textbf{Ley R},
+\textbf{Liu Y-X}, \textbf{Loftfield E}, \textbf{Lozupone C},
+\textbf{Maher M}, \textbf{Marotz C}, \textbf{Martin BD},
+\textbf{McDonald D}, \textbf{McIver LJ}, \textbf{Melnik AV},
+\textbf{Metcalf JL}, \textbf{Morgan SC}, \textbf{Morton JT},
+\textbf{Naimey AT}, \textbf{Navas-Molina JA}, \textbf{Nothias LF},
+\textbf{Orchanian SB}, \textbf{Pearson T}, \textbf{Peoples SL},
+\textbf{Petras D}, \textbf{Preuss ML}, \textbf{Pruesse E},
+\textbf{Rasmussen LB}, \textbf{Rivers A}, \textbf{Robeson MS},
+\textbf{Rosenthal P}, \textbf{Segata N}, \textbf{Shaffer M},
+\textbf{Shiffer A}, \textbf{Sinha R}, \textbf{Song SJ}, \textbf{Spear
+JR}, \textbf{Swafford AD}, \textbf{Thompson LR}, \textbf{Torres PJ},
+\textbf{Trinh P}, \textbf{Tripathi A}, \textbf{Turnbaugh PJ},
+\textbf{Ul-Hasan S}, \textbf{Hooft JJJ van der}, \textbf{Vargas F},
+\textbf{Vázquez-Baeza Y}, \textbf{Vogtmann E}, \textbf{Hippel M von},
+\textbf{Walters W}, \textbf{Wan Y}, \textbf{Wang M}, \textbf{Warren J},
+\textbf{Weber KC}, \textbf{Williamson CHD}, \textbf{Willis AD},
+\textbf{Xu ZZ}, \textbf{Zaneveld JR}, \textbf{Zhang Y}, \textbf{Zhu Q},
+\textbf{Knight R}, \textbf{Caporaso JG}. 2019. Reproducible,
+interactive, scalable and extensible microbiome data science using QIIME
+2. Nature Biotechnology \textbf{37}:852--857.
+doi:\href{https://doi.org/10.1038/s41587-019-0209-9}{10.1038/s41587-019-0209-9}.}
+
+\bibitem[\citeproctext]{ref-McMurdie2013}
+\CSLLeftMargin{4. }%
+\CSLRightInline{\textbf{McMurdie PJ}, \textbf{Holmes S}. 2013. Phyloseq:
+An r package for reproducible interactive analysis and graphics of
+microbiome census data. PLoS ONE \textbf{8}:e61217.
+doi:\href{https://doi.org/10.1371/journal.pone.0061217}{10.1371/journal.pone.0061217}.}
+
+\bibitem[\citeproctext]{ref-Callahan2016}
+\CSLLeftMargin{5. }%
+\CSLRightInline{\textbf{Callahan BJ}, \textbf{McMurdie PJ},
+\textbf{Rosen MJ}, \textbf{Han AW}, \textbf{Johnson AJA}, \textbf{Holmes
+SP}. 2016. DADA2: High-resolution sample inference from illumina
+amplicon data. Nature Methods \textbf{13}:581--583.
+doi:\href{https://doi.org/10.1038/nmeth.3869}{10.1038/nmeth.3869}.}
+
+\bibitem[\citeproctext]{ref-Johnson2025}
+\CSLLeftMargin{6. }%
+\CSLRightInline{\textbf{Johnson G}, \textbf{Westcott SL},
+\textbf{Schloss PD}. 2025. Clustur: An r package for clustering features
+using sparse distance matrices. Microbiology Resource Announcements
+\textbf{14}.
+doi:\href{https://doi.org/10.1128/mra.01238-24}{10.1128/mra.01238-24}.}
+
+\bibitem[\citeproctext]{ref-Schloss2025}
+\CSLLeftMargin{7. }%
+\CSLRightInline{\textbf{Schloss PD}. 2025. Phylotypr: An r package for
+classifying DNA sequences. Microbiology Resource Announcements
+\textbf{14}.
+doi:\href{https://doi.org/10.1128/mra.01144-24}{10.1128/mra.01144-24}.}
+
+\end{CSLReferences}
 
 
 
