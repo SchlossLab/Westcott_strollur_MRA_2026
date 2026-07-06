@@ -36,7 +36,7 @@ execute:
 
 \vspace{20mm}
 
-**Running title:** mums2
+**Running title:** strollur
 
 \vspace{20mm}
 
@@ -77,7 +77,7 @@ strollur's data structures allows users to keep track of sequence data, abundanc
 strollur also includes functions designed for developers to integrate strollur objects into their own R packages. These developer-facing functions provide additional access to the back end data. The ability to import and export data as a strollur object has already been integrated into the clustur [@Johnson2025] and phylotypr [@Schloss2025] packages. The package leverages the R6 object oriented programming framework and the Rcpp package to accelerate data processing. By using these features of R, strollur minimize the need to create deep copies of large data objects. 
 
 
-**Data availability.** strollur can accessed through the Comprehensive R Archive Network (CRAN; DOI: 10.32614/CRAN.package.strollur) and developmental versions are available through the project's GitHub website (https://github.com/mothur2/strollur). The package's GitHub repository includes the package's source code, the website's source code, automated tests written using the testthat R package, and an issue tracker where users can post questions, bug reports, and suggestions for future features. A pkgdown version of the documentation including multiple articles describing its use is hosted at (https://mothur.org/strollur). The strollur package is available under the GNU General Public License (v3).
+**Data availability.** strollur can accessed through the Comprehensive R Archive Network (CRAN; DOI: 10.32614/CRAN.package.strollur) and developmental versions are available through the project's GitHub website (https://github.com/mothur/strollur). The package's GitHub repository includes the package's source code, the website's source code, automated tests written using the testthat R package, and an issue tracker where users can post questions, bug reports, and suggestions for future features. A pkgdown version of the documentation including multiple articles describing its use is hosted at (https://mothur.org/strollur). The strollur package is available under the GNU General Public License (v3).
 
 \newpage
 

@@ -14,7 +14,7 @@
 
 # strollur: An R package for working with amplicon sequence data in R
 
-**Running title:** mums2
+**Running title:** strollur
 
 Sarah L. Westcott<sup>1</sup>, Gregory Johnson Jr.<sup>1</sup>, Patrick
 D. Schloss<sup>1</sup>
@@ -85,7 +85,7 @@ minimize the need to create deep copies of large data objects.
 **Data availability.** strollur can accessed through the Comprehensive R
 Archive Network (CRAN; DOI: 10.32614/CRAN.package.strollur) and
 developmental versions are available through the project’s GitHub
-website (https://github.com/mothur2/strollur). The package’s GitHub
+website (https://github.com/mothur/strollur). The package’s GitHub
 repository includes the package’s source code, the website’s source
 code, automated tests written using the testthat R package, and an issue
 tracker where users can post questions, bug reports, and suggestions for
